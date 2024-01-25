@@ -1,10 +1,13 @@
-import React from 'react';
-import { View, Text, Dimensions, Image, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Dimensions, Image, ScrollView, TouchableOpacity } from 'react-native';
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
 
 function Right() {
+
+  const [global, setGlobal] = React.useState(true);
+
   return (
     <View style={{ flex: 1, backgroundColor: '#3E6975' }}>
       <ScrollView>
@@ -20,6 +23,30 @@ function Right() {
       <View style={{ width: 317, height: 452, backgroundColor: '#B7E5E4', alignSelf: 'center', marginTop: 25, borderRadius: 12 }}>
         <Image source={require('../assets/image/Right2.png')} style={{ alignSelf:'center', marginTop: width*0.15 }} />
       </View>
+      {global ?
+          <View style={{
+            width: 150, height: 30, alignSelf: 'center', backgroundColor: '#B7E5E4', flexDirection: 'row', marginTop: 15
+            , borderRadius: 6, justifyContent: 'space-between', padding: 5
+          }}>
+            <View style={{ marginLeft: 5, backgroundColor: '#F3AF8E', width: 50, height: 20, borderRadius: 6, alignItems: 'center' }}>
+              <Text style={{}}>Global</Text>
+            </View>
+            <TouchableOpacity onPress={()=>setGlobal(false)}>
+            <Text style={{ marginRight: 10 }}>Close Up</Text>
+            </TouchableOpacity>
+          </View> :
+          <View style={{
+            width: 150, height: 30, alignSelf: 'center', backgroundColor: '#B7E5E4', flexDirection: 'row', marginTop: 15
+            , borderRadius: 6, justifyContent: 'space-between', padding: 5
+          }}>
+            <TouchableOpacity onPress={()=>setGlobal(true)}>
+            <Text style={{}}>Global</Text>
+            </TouchableOpacity>
+            <View style={{ marginLeft: 5, backgroundColor: '#F3AF8E', width: 80, height: 20, borderRadius: 6, alignItems: 'center' }}>
+              <Text style={{ marginRight: 10 }}>Close Up</Text>
+            </View>
+          </View>}
+
       </ScrollView>
     </View>
   )
